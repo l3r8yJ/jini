@@ -1,0 +1,23 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.2
+  SuggestExtensions: false
+  NewCops: enable
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/*.rb'
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 30
+Metrics/MethodLength:
+  Max: 30
+Metrics/CyclomaticComplexity:
+  Max: 12
+Metrics/PerceivedComplexity:
+  Max: 12
+Layout/EndOfLine:
+  EnforcedStyle: lf
