@@ -1,17 +1,12 @@
 # frozen_string_literal: true
+
 require 'minitest/autorun'
 require_relative '../lib/jini'
 
-class TestJiniTest
-  def setup
-    # Do nothing
-  end
-
-  def teardown
-    # Do nothing
-  end
-
+class TestJiniTest < Minitest::Test
   def test
-    skip 'Not implemented'
+    xpath = Jini.new('parent')
+                .add('child')
+    assert_equal('/parent/child/', xpath.to_s)
   end
 end
