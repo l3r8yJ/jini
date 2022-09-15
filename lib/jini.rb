@@ -126,4 +126,11 @@ class Jini
         )
     )
   end
+
+  # Adds '|' to head
+  # @param [String] node
+  # @return [Jini] with '|node' on tail
+  def or(node)
+    Jini.new("#{@head}|#{node}")
+  end
 end
