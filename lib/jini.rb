@@ -16,12 +16,14 @@ class Jini
   end
 
   # Convert it to a string.
+  # @return [String] xpath as string
   def to_s
     @head.to_s
   end
 
   # Additional node for xpath.
   # @param node [String] node
+  # @return [Jini] object
   def add_path(node)
     Jini.new("#{@head}/#{node}")
   end
@@ -29,18 +31,21 @@ class Jini
   # Additional attribute for xpath.
   # @param key [String] name of attr
   # @param value [String] value of attr
+  # @return [Jini] object
   def add_attr(key, value)
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
   # Adds an @value to xpath
   # @param value [String] with value attr
+  # @return [Jini] object
   def all_attr(value)
     Jini.new("#{@head}@#{value}")
   end
 
   # Xpath with all elements.
   # Addition a *** to xpath
+  # @return [Jini] object
   def all
     Jini.new(add_path('*').to_s)
   end
@@ -48,6 +53,7 @@ class Jini
   # Xpath with all named elements.
   # Addition _//node_ to xpath
   # @param node [String] name of node
+  # @return [Jini] object
   def add_all(node)
     Jini.new("#{@head}//#{node}")
   end
@@ -55,6 +61,7 @@ class Jini
   # Access by index.
   # Addition _[index]_ to xpath
   # @param position [Integer] number
+  # @return [Jini] object
   def at(position)
     Jini.new("#{@head}[#{position}]")
   end
