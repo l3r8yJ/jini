@@ -29,6 +29,10 @@ class Jini
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
+  def all_attr(value)
+    Jini.new("#{@head}@#{value}")
+  end
+
   # Xpath with all elements.
   def all
     Jini.new(add_path('*').to_s)
