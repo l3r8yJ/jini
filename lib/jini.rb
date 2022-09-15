@@ -47,7 +47,8 @@ class Jini
   # Addition a *** to xpath
   # @return [Jini] object
   def all
-    Jini.new(add_path('*').to_s)
+    raise InvalidPath, 'You cannot add all tag after attr!' if @head[-1].eql?(']')
+    Jini.new(add_path('*').to_s) unless @head[-1].eql?(']')
   end
 
   # Xpath with all named elements.
