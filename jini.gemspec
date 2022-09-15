@@ -8,8 +8,7 @@ Gem::Specification.new do |s|
   s.version = '0.0.5'
   s.license = 'MIT'
   s.summary = 'Simple Immutable Ruby XPATH Builder'
-  s.description = 'Class Jini helps you build a XPATH and then modify its \
-parts via a simple fluent interface.'
+  s.description = 'Class Jini helps you build a XPATH and then modify its parts via a simple fluent interface.'
   s.authors = ['Ivan Ivanchuck']
   s.email = 'clicker.heroes.acg@gmail.com'
   s.homepage = 'https://github.com/l3r8yJ/jini'

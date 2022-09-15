@@ -96,6 +96,7 @@ class Jini
   # Replace all '/' to '::' symbols
   # if path doesn't contain invalid symbols for selection
   # @return [Jini] selection
+  # @raise [InvalidPath] when path can't present with select
   def selection
     if @head.include?('[') || @head.include?(']') || @head.include?('@') || @head.include?('//')
       raise InvalidPath, 'Cannot select, path contains bad symbols'
@@ -132,5 +133,30 @@ class Jini
   # @return [Jini] with '|node' on tail
   def or(node)
     Jini.new("#{@head}|#{node}")
+  end
+
+  # Less than.
+  # Addition '[node < value]' to tail
+  # @param [String] node name
+  # @param [Object] value
+  # @return [Jini]
+  def lt(node, value)
+    st('<', node, value)
+  end
+
+  # Greater than.
+  # Addition '[node > value]' to tail
+  # @param [String] node name
+  # @param [Object] value
+  # @return [Jini]
+  def gt(node, value)
+    st('>', node, value)
+  end
+
+  private
+
+  # Some action than.
+  def st(action, node, value)
+    Jini.new("#{@head}[#{node} #{action} #{value}]")
   end
 end
