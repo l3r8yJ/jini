@@ -42,6 +42,17 @@ class JiniTest < Minitest::Test
     )
   end
 
+  def test_remove_path
+    assert_equal(
+      'parent/toy',
+      Jini.new('parent')
+          .add_path('child')
+          .add_path('toy')
+          .remove_path('child')
+          .to_s
+    )
+  end
+
   def test_add_attr_success
     assert_equal(
       '/node[@key="value"]',
@@ -97,5 +108,33 @@ class JiniTest < Minitest::Test
         .remove_attr('age')
         .to_s
     )
+  end
+
+  def test_add_all
+    assert_equal(
+      'parent//children',
+      Jini.new('parent').add_all('children').to_s
+    )
+  end
+
+  def test_selection_success
+    assert_equal(
+      'parent::child',
+      Jini.new('parent')
+          .add_path('child')
+          .selection
+          .to_s
+    )
+  end
+
+  def test_selection_fail
+    assert_raises do
+      Jini.new
+          .add_path('parent')
+          .add_path('children')
+          .add_attr('k', 'v')
+          .selection
+          .to_s
+    end
   end
 end

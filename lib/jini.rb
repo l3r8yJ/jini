@@ -87,6 +87,7 @@ class Jini
   # @param position [Integer] number
   # @return [Jini] object
   def at(position)
+    raise InvalidPath, 'Cant use at after selection' if @head.include? '::'
     Jini.new("#{@head}[#{position}]")
   end
 
@@ -94,7 +95,7 @@ class Jini
   # if path doesn't contain invalid symbols for selection
   # @return [Jini] selection
   def selection
-    if @head.include?('[') || @head.include?(']') || @head.include?('@')
+    if @head.include?('[') || @head.include?(']') || @head.include?('@') || @head.include?('//')
       raise InvalidPath, 'Cannot select, path contains bad symbols'
     end
     Jini.new(@head.gsub('/', '::').to_s)
