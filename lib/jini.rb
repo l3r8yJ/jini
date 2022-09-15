@@ -32,7 +32,7 @@ class Jini
   # When path not valid
   class InvalidPath < StandardError; end
 
-  # @param head [String] with head of your xpath
+  # @param head [String]
   def initialize(head = '')
     @head = head
   end
@@ -51,7 +51,7 @@ class Jini
   end
 
   # Additional attribute for xpath.
-  # [@key="value"]
+  # '[@key="value"]'
   # @param key [String] name of attr
   # @param value [String] value of attr
   # @return [Jini] object
@@ -67,15 +67,15 @@ class Jini
   end
 
   # Xpath with all elements.
-  # Addition a *** to xpath
+  # Addition an '*' to tail of xpath
   # @return [Jini] object
   def all
     raise InvalidPath, 'You cannot add all tag after attr!' if @head[-1].eql?(']')
-    Jini.new(add_path('*').to_s) unless @head[-1].eql?(']')
+    Jini.new(add_path('*').to_s)
   end
 
   # Xpath with all named elements.
-  # Addition _//node_ to xpath
+  # Addition '//node' to xpath
   # @param node [String] name of node
   # @return [Jini] object
   def add_all(node)
@@ -83,14 +83,14 @@ class Jini
   end
 
   # Access by index.
-  # Addition _[index]_ to xpath
+  # Addition '[index]' to xpath
   # @param position [Integer] number
   # @return [Jini] object
   def at(position)
     Jini.new("#{@head}[#{position}]")
   end
 
-  # Replace all _/_ to _::_ symbols
+  # Replace all '/' to '::' symbols
   # if path doesn't contain invalid symbols for selection
   # @return [Jini] selection
   def selection
@@ -109,10 +109,9 @@ class Jini
 
   # Removes attr by name
   # before:
-  # `/parent/child[@k="v"]`
-  # .remove_attr('k')
+  # '/parent/child[@k="v"]'
   # after:
-  # `/parent/child`
+  # '/parent/child'
   # @param [String] name of attr
   # @return [Jini] without an attr
   def remove_attr(name)
