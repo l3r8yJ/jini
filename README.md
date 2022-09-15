@@ -11,7 +11,7 @@ xpath = Jini
   .add_path('child') # addition a path node 
   .add_attr('key', 'value') # addition an attribute
   .to_s # convert it to a string
-# -> xpath: parent/child[@key="value"]
+# -> xpath: /parent/child[@key="value"]
 ```
 
 The full list of methods is [here](https://www.rubydoc.info/gems/jini/0.0.3).

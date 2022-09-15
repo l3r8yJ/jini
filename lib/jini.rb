@@ -23,11 +23,13 @@
 # SOFTWARE.
 
 # It's a simple XPATH builder.
+# ```
 # require 'jini'
-# xpath = Jini.new('body')
+# xpath = Jini.new('parent')
 #   .add_path(node: 'child')
-#   .add_path(node: 'child')
-#   .to_s // /body/child/child
+#   .add_path(node: 'toy')
+#   .to_s // body/child/toy
+# ```
 class Jini
   # When path not valid
   class InvalidPath < StandardError; end
