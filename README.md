@@ -1,7 +1,7 @@
 # Jini
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
-The class [`Jini`](https://www.rubydoc.info/gems/jini/0.0.3/Jini) helps you build a XPATH.
+The class [`Jini`](https://www.rubydoc.info/gems/jini/0.0.5/Jini) helps you build a XPATH.
 
 ```ruby
 require 'jini'
@@ -14,7 +14,7 @@ xpath = Jini
 # -> xpath: /parent/child[@key="value"]
 ```
 
-The full list of methods is [here](https://www.rubydoc.info/gems/jini/0.0.3).
+The full list of methods is [here](https://www.rubydoc.info/gems/jini/0.0.5).
 
 Install it:
 
