@@ -104,8 +104,7 @@ class Jini
   # @param node [String] name of node for removal
   # @return [Jini] without a node
   def remove_path(node)
-    copy = @head
-    Jini.new(copy.gsub("/#{node}", ''))
+    Jini.new(@head.gsub("/#{node}", ''))
   end
 
   # Removes attr by name
@@ -120,7 +119,7 @@ class Jini
     Jini.new(
       @head
         .gsub(
-          /(\[@|#{name}="[^"]+"|[]+|])/,
+          /(\[@?#{name}="[^"]+"(\[\]+|\]))/,
           ''
         )
     )

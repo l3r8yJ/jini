@@ -83,4 +83,19 @@ class JiniTest < Minitest::Test
           .to_s
     )
   end
+
+  def test_remove_attr_many
+    assert_equal(
+      '/parent/child/toy',
+      Jini
+        .new
+        .add_path('parent')
+        .add_path('child')
+        .add_attr('age', 'teen')
+        .add_path('toy')
+        .add_attr('age', 'old')
+        .remove_attr('age')
+        .to_s
+    )
+  end
 end
