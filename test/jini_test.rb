@@ -31,12 +31,14 @@ require_relative 'test_helper'
 # Copyright:: Copyright (c) 2022-2022 Ivan Ivanchuck
 # License:: MIT
 class JiniTest < Minitest::Test
+  PARENT = 'parent'
+  CHILD = 'child'
   def test_add_path_and_at_success
     assert_equal(
       '/parent/child[1]',
       Jini.new
-        .add_path('parent')
-        .add_path('child')
+        .add_path(PARENT)
+        .add_path(CHILD)
         .at(1)
         .to_s
     )
@@ -45,10 +47,10 @@ class JiniTest < Minitest::Test
   def test_remove_path
     assert_equal(
       'parent/toy',
-      Jini.new('parent')
-          .add_path('child')
+      Jini.new(PARENT)
+          .add_path(CHILD)
           .add_path('toy')
-          .remove_path('child')
+          .remove_path(CHILD)
           .to_s
     )
   end
@@ -67,8 +69,8 @@ class JiniTest < Minitest::Test
     assert_equal(
       '/parent/child/*',
       Jini.new
-          .add_path('parent')
-          .add_path('child')
+          .add_path(PARENT)
+          .add_path(CHILD)
           .all
           .to_s
     )
@@ -77,7 +79,7 @@ class JiniTest < Minitest::Test
   def test_all_fail
     assert_raises do
       Jini.new
-          .add_path('parent')
+          .add_path(PARENT)
           .add_attr('key', 'value')
           .all
     end
@@ -100,8 +102,8 @@ class JiniTest < Minitest::Test
       '/parent/child/toy',
       Jini
         .new
-        .add_path('parent')
-        .add_path('child')
+        .add_path(PARENT)
+        .add_path(CHILD)
         .add_attr('age', 'teen')
         .add_path('toy')
         .add_attr('age', 'old')
@@ -113,15 +115,15 @@ class JiniTest < Minitest::Test
   def test_add_all
     assert_equal(
       'parent//children',
-      Jini.new('parent').add_all('children').to_s
+      Jini.new(PARENT).add_all('children').to_s
     )
   end
 
   def test_selection_success
     assert_equal(
       'parent::child',
-      Jini.new('parent')
-          .add_path('child')
+      Jini.new(PARENT)
+          .add_path(CHILD)
           .selection
           .to_s
     )
@@ -130,8 +132,8 @@ class JiniTest < Minitest::Test
   def test_selection_fail
     assert_raises do
       Jini.new
-          .add_path('parent')
-          .add_path('children')
+          .add_path(PARENT)
+          .add_path(CHILD)
           .add_attr('k', 'v')
           .selection
           .to_s
