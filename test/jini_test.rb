@@ -142,10 +142,30 @@ class JiniTest < Minitest::Test
 
   def test_or
     assert_equal(
-      'parent/child|animal',
+      'parent/child[animal|toy]',
       Jini.new(PARENT)
           .add_path(CHILD)
-          .or('animal')
+          .or('animal', 'toy')
+          .to_s
+    )
+  end
+
+  def test_lt
+    assert_equal(
+      'parent/child[toys < 10]',
+      Jini.new(PARENT)
+          .add_path(CHILD)
+          .lt('toys', 10)
+          .to_s
+    )
+  end
+
+  def test_gt
+    assert_equal(
+      'parent/child[toys > 10]',
+      Jini.new(PARENT)
+          .add_path(CHILD)
+          .gt('toys', 10)
           .to_s
     )
   end

@@ -138,26 +138,26 @@ class Jini
 
   # Less than.
   # Addition '[node < value]' to tail
-  # @param [String] node name
+  # @param [String] key name
   # @param [Object] value
   # @return [Jini]
-  def lt(node, value)
-    sat('<', node, value)
+  def lt(key, value)
+    sat('<', key, value)
   end
 
   # Greater than.
   # Addition '[node > value]' to tail
-  # @param [String] node name
+  # @param [String] key name
   # @param [Object] value
   # @return [Jini]
-  def gt(node, value)
-    sat('>', node, value)
+  def gt(key, value)
+    sat('>', key, value)
   end
 
   private
 
   # Some action than.
-  def sat(action, node, value)
-    Jini.new("#{@head}[#{node} #{action} #{value}]")
+  def sat(action, key, value)
+    Jini.new("#{@head}[#{key} #{action} #{value}]")
   end
 end
