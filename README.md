@@ -1,4 +1,4 @@
-The class `Jini` helps you build a XPATH.
+The class [`Jini`](https://www.rubydoc.info/github/l3r8yJ/jini/master/Jini) helps you build a XPATH.
 
 ```ruby
 require 'jini'
@@ -11,7 +11,7 @@ xpath = Jini
 # -> xpath: parent/child[@key="value"]
 ```
 
-The full list of methods is [here](https://www.rubydoc.info/github/l3r8y/jini/master/Jini).
+The full list of methods is [here](https://www.rubydoc.info/github/l3r8yJ/jini/master/Jini).
 
 Install it:
 
