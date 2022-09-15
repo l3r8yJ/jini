@@ -1,5 +1,4 @@
-The class [`Jini`](https://www.rubydoc.info/github/l3r8yJ/jini/master/Jini)
-helps you build a XPATH.
+The class `Jini` helps you build a XPATH.
 
 ```ruby
 require 'jini'
