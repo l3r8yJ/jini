@@ -108,7 +108,21 @@ class Jini
     Jini.new(copy.gsub("/#{node}", ''))
   end
 
+  # Removes attr by name
+  # before:
+  # /parent/child[@k="v"]
+  # .remove_attr('k')
+  # after:
+  # /parent/child
+  # @param [String] name of attr
+  # @return [Jini] without an attr
   def remove_attr(name)
-    @head.gsub(/(\[@|#{name}="[^"]+"|[]+|])/, '') if @head.include?("[@#{name}")
+    Jini.new(
+      @head
+        .gsub(
+          /(\[@|#{name}="[^"]+"|[]+|])/,
+          ''
+        )
+    )
   end
 end

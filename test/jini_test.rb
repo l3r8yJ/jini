@@ -80,6 +80,7 @@ class JiniTest < Minitest::Test
           .add_path('batya')
           .add_attr('drunk', 'very')
           .remove_attr('drunk')
+          .to_s
     )
   end
 end
