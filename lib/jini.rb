@@ -129,10 +129,11 @@ class Jini
   end
 
   # Adds '|' to head
-  # @param [String] node
-  # @return [Jini] with '|node' on tail
-  def or(node)
-    Jini.new("#{@head}|#{node}")
+  # @param [String] first statement
+  # @param [String] second statement
+  # @return [Jini] with Jini '[first|second]' on tail
+  def or(first, second)
+    Jini.new("#{@head}[#{first}|#{second}]")
   end
 
   # Less than.
@@ -141,7 +142,7 @@ class Jini
   # @param [Object] value
   # @return [Jini]
   def lt(node, value)
-    st('<', node, value)
+    sat('<', node, value)
   end
 
   # Greater than.
@@ -150,13 +151,13 @@ class Jini
   # @param [Object] value
   # @return [Jini]
   def gt(node, value)
-    st('>', node, value)
+    sat('>', node, value)
   end
 
   private
 
   # Some action than.
-  def st(action, node, value)
+  def sat(action, node, value)
     Jini.new("#{@head}[#{node} #{action} #{value}]")
   end
 end
