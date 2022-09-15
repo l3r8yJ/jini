@@ -67,6 +67,15 @@ class Jini
     Jini.new("#{@head}[#{position}]")
   end
 
+  # Replace all _/_ to _::_ symbols if it's possible
+  # @return [Jini] selection
+  def selection
+    if @head.include?('[') || @head.include?(']') || @head.include?('@')
+      raise InvalidPath, 'Cannot select, path contains bad symbols'
+    end
+    Jini.new(@head.gsub('/', '::').to_s)
+  end
+
   # Removes node by name
   # @param node [String] name of node for removal
   # @return [Jini] without a node
