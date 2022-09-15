@@ -110,10 +110,10 @@ class Jini
 
   # Removes attr by name
   # before:
-  # /parent/child[@k="v"]
+  # `/parent/child[@k="v"]`
   # .remove_attr('k')
   # after:
-  # /parent/child
+  # `/parent/child`
   # @param [String] name of attr
   # @return [Jini] without an attr
   def remove_attr(name)
