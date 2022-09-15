@@ -139,4 +139,14 @@ class JiniTest < Minitest::Test
           .to_s
     end
   end
+
+  def test_or
+    assert_equal(
+      'parent/child|animal',
+      Jini.new(PARENT)
+          .add_path(CHILD)
+          .or('animal')
+          .to_s
+    )
+  end
 end
