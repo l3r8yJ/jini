@@ -23,17 +23,18 @@
 # SOFTWARE.
 
 # It's a simple XPATH builder.
-# ```
+#
 # require 'jini'
 # xpath = Jini.new('parent')
 #   .add_path(node: 'child')
 #   .add_path(node: 'toy')
 #   .to_s // body/child/toy
-# ```
 class Jini
   # When path not valid
   class InvalidPath < StandardError; end
 
+  # Makes new object.
+  # By default it creates an empty path and you can ignore the head parameter.
   # @param head [String]
   def initialize(head = '')
     @head = head
