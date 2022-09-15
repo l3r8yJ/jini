@@ -67,7 +67,8 @@ class Jini
     Jini.new("#{@head}[#{position}]")
   end
 
-  # Replace all _/_ to _::_ symbols if it's possible
+  # Replace all _/_ to _::_ symbols
+  # if path doesn't contain invalid symbols for selection
   # @return [Jini] selection
   def selection
     if @head.include?('[') || @head.include?(']') || @head.include?('@')
