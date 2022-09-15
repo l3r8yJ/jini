@@ -71,6 +71,6 @@ class Jini
   # @return [Jini] without a node
   def remove_path(node)
     copy = @head
-    Jini.new copy.gsub("/#{node}", '')
+    Jini.new(copy.gsub("/#{node}", ''))
   end
 end
