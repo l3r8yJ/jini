@@ -1,5 +1,4 @@
 # Jini
-[![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
 The class [`Jini`](https://www.rubydoc.info/gems/jini/0.0.5/Jini) helps you build a XPATH.
 
