@@ -26,9 +26,9 @@
 #
 # require 'jini'
 # xpath = Jini.new('parent')
-#   .add_path(node: 'child')
-#   .add_path(node: 'toy')
-#   .to_s // body/child/toy
+#   .add_node('child')
+#   .add_attr('toy', 'plane')
+#   .to_s // parent/child[@toy="plane"]
 class Jini
   # When path not valid
   class InvalidPath < StandardError; end
@@ -58,6 +58,26 @@ class Jini
   # @return [Jini] object
   def add_node(node)
     Jini.new("#{@head}/#{node}")
+  end
+
+  # Removes node by name
+  # @param node [String] name of node for removal
+  # @return [Jini] without a node
+  def remove_node(node)
+    Jini.new(
+      purge("/#{node}")
+    )
+  end
+
+  # This method replaces *all* origins to new
+  # @param [String] origin node
+  # @param [String] new node
+  def replace_node(origin, new)
+    copy = @head.split('/')
+    copy.map! do |node|
+      node.eql?(origin) ? new : node
+    end
+    Jini.new(copy.join('/'))
   end
 
   # Addition property in tail
@@ -121,15 +141,6 @@ class Jini
       raise InvalidPath, 'Cannot select, path contains bad symbols'
     end
     Jini.new(@head.gsub('/', '::').to_s)
-  end
-
-  # Removes node by name
-  # @param node [String] name of node for removal
-  # @return [Jini] without a node
-  def remove_node(node)
-    Jini.new(
-      purge("/#{node}")
-    )
   end
 
   # Removes attr by name

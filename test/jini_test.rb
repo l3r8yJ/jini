@@ -223,4 +223,42 @@ class JiniTest < Minitest::Test
           .to_s
     end
   end
+
+  def test_replace_node_single
+    assert_equal(
+      'parent/child/toy/child/kek',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_node('toy')
+          .add_node(CHILD)
+          .add_node('nonkek')
+          .replace_node('nonkek', 'kek')
+          .to_s
+    )
+  end
+
+  def test_replace_node_multi
+    assert_equal(
+      'parent/wife/toy/wife',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_node('toy')
+          .add_node(CHILD)
+          .replace_node(CHILD, 'wife')
+          .to_s
+    )
+  end
+
+  def test_replace_node_with_attr
+    assert_equal(
+      'parent/wife/toy[@material="plastic"]/wife',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_node('toy')
+          .add_attr('material', 'plastic')
+          .add_node(CHILD)
+          .replace_node(CHILD, 'wife')
+          .to_s
+    )
+  end
 end
