@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to? :required_rubygems_version=
   s.required_ruby_version = '>=3.0.0'
   s.name = 'jini'
-  s.version = '0.0.6'
+  s.version = '0.0.7'
   s.license = 'MIT'
   s.summary = 'Simple Immutable Ruby XPATH Builder'
   s.description = 'Class Jini helps you build a XPATH and then modify its parts via a simple fluent interface.'
