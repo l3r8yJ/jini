@@ -11,7 +11,7 @@ xpath = Jini
   .add_node('parent') # addition a path node
   .add_node('child') # addition a path node 
   .add_attr('key', 'value') # addition an attribute
-  .remove_node('child') # removes attr by key
+  .remove_node('child') # removes node
   .to_s # convert it to a string
 puts(xpath) # -> xpath: /parent[@key="value"]
 ```
