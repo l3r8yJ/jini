@@ -8,12 +8,12 @@ The class [`Jini`](https://www.rubydoc.info/gems/jini/0.0.5/Jini) helps you buil
 require 'jini'
 xpath = Jini
   .new
-  .add_path('parent') # addition a path node
-  .add_path('child') # addition a path node 
+  .add_node('parent') # addition a path node
+  .add_node('child') # addition a path node 
   .add_attr('key', 'value') # addition an attribute
-  .remove_attr('key') # removes attr by key
+  .remove_node('child') # removes attr by key
   .to_s # convert it to a string
-# -> xpath: /parent[@key="value"]
+puts(xpath) # -> xpath: /parent[@key="value"]
 ```
 
 The full list of methods is [here](https://www.rubydoc.info/gems/jini/0.0.5).

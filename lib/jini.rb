@@ -49,7 +49,7 @@ class Jini
   # Additional node for xpath.
   # @param node [String] node
   # @return [Jini] object
-  def add_path(node)
+  def add_node(node)
     Jini.new("#{@head}/#{node}")
   end
 
@@ -74,7 +74,7 @@ class Jini
   # @return [Jini] object
   def all
     raise InvalidPath, 'You cannot add all tag after attr!' if @head[-1].eql?(']')
-    Jini.new(add_path('*').to_s)
+    Jini.new(add_node('*').to_s)
   end
 
   # Xpath with all named elements.
@@ -108,7 +108,7 @@ class Jini
   # Removes node by name
   # @param node [String] name of node for removal
   # @return [Jini] without a node
-  def remove_path(node)
+  def remove_node(node)
     Jini.new(
       purge("/#{node}")
     )

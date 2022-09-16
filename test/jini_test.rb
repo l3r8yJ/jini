@@ -37,8 +37,8 @@ class JiniTest < Minitest::Test
     assert_equal(
       '/parent/child[1]',
       Jini.new
-        .add_path(PARENT)
-        .add_path(CHILD)
+        .add_node(PARENT)
+        .add_node(CHILD)
         .at(1)
         .to_s
     )
@@ -48,9 +48,9 @@ class JiniTest < Minitest::Test
     assert_equal(
       'parent/toy',
       Jini.new(PARENT)
-          .add_path(CHILD)
-          .add_path('toy')
-          .remove_path(CHILD)
+          .add_node(CHILD)
+          .add_node('toy')
+          .remove_node(CHILD)
           .to_s
     )
   end
@@ -59,7 +59,7 @@ class JiniTest < Minitest::Test
     assert_equal(
       '/node[@key="value"]',
       Jini.new
-        .add_path('node')
+        .add_node('node')
         .add_attr('key', 'value')
         .to_s
     )
@@ -69,8 +69,8 @@ class JiniTest < Minitest::Test
     assert_equal(
       '/parent/child/*',
       Jini.new
-          .add_path(PARENT)
-          .add_path(CHILD)
+          .add_node(PARENT)
+          .add_node(CHILD)
           .all
           .to_s
     )
@@ -79,7 +79,7 @@ class JiniTest < Minitest::Test
   def test_all_fail
     assert_raises do
       Jini.new
-          .add_path(PARENT)
+          .add_node(PARENT)
           .add_attr('key', 'value')
           .all
     end
@@ -89,8 +89,8 @@ class JiniTest < Minitest::Test
     assert_equal(
       '/home/batya',
       Jini.new
-          .add_path('home')
-          .add_path('batya')
+          .add_node('home')
+          .add_node('batya')
           .add_attr('drunk', 'very')
           .remove_attr('drunk')
           .to_s
@@ -102,10 +102,10 @@ class JiniTest < Minitest::Test
       '/parent/child/toy',
       Jini
         .new
-        .add_path(PARENT)
-        .add_path(CHILD)
+        .add_node(PARENT)
+        .add_node(CHILD)
         .add_attr('age', 'teen')
-        .add_path('toy')
+        .add_node('toy')
         .add_attr('age', 'old')
         .remove_attr('age')
         .to_s
@@ -123,7 +123,7 @@ class JiniTest < Minitest::Test
     assert_equal(
       'parent::child',
       Jini.new(PARENT)
-          .add_path(CHILD)
+          .add_node(CHILD)
           .selection
           .to_s
     )
@@ -132,8 +132,8 @@ class JiniTest < Minitest::Test
   def test_selection_fail
     assert_raises do
       Jini.new
-          .add_path(PARENT)
-          .add_path(CHILD)
+          .add_node(PARENT)
+          .add_node(CHILD)
           .add_attr('k', 'v')
           .selection
           .to_s
@@ -144,7 +144,7 @@ class JiniTest < Minitest::Test
     assert_equal(
       'parent/child[animal | toy]',
       Jini.new(PARENT)
-          .add_path(CHILD)
+          .add_node(CHILD)
           .or('animal', 'toy')
           .to_s
     )
@@ -154,7 +154,7 @@ class JiniTest < Minitest::Test
     assert_equal(
       'parent/child[toys < 10]',
       Jini.new(PARENT)
-          .add_path(CHILD)
+          .add_node(CHILD)
           .lt('toys', 10)
           .to_s
     )
@@ -164,7 +164,7 @@ class JiniTest < Minitest::Test
     assert_equal(
       'parent/child[toys > 10]',
       Jini.new(PARENT)
-          .add_path(CHILD)
+          .add_node(CHILD)
           .gt('toys', 10)
           .to_s
     )
