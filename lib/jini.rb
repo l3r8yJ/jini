@@ -128,11 +128,11 @@ class Jini
   end
 
   # Adds '|' to head
-  # @param [String] first statement
-  # @param [String] second statement
+  # @param [String] alpha statement
+  # @param [String] beta statement
   # @return [Jini] with Jini '[first|second]' on tail
-  def or(first, second)
-    Jini.new("#{@head}[#{first}|#{second}]")
+  def or(alpha, beta)
+    action_between('|', alpha, beta)
   end
 
   # Less than.
@@ -141,7 +141,7 @@ class Jini
   # @param [Object] value
   # @return [Jini]
   def lt(key, value)
-    sat('<', key, value)
+    action_between('<', key, value)
   end
 
   # Greater than.
@@ -150,17 +150,17 @@ class Jini
   # @param [Object] value
   # @return [Jini]
   def gt(key, value)
-    sat('>', key, value)
+    action_between('>', key, value)
   end
 
   private
 
-  # Some action than.
-  def sat(action, key, value)
-    Jini.new("#{@head}[#{key} #{action} #{value}]")
+  # Some action between two statements.
+  def action_between(action, alpha, beta)
+    Jini.new("#{@head}[#{alpha} #{action} #{beta}]")
   end
 
-  # @param [Regexp | String] token
+  # @param [Regexp | String] token to be purged from the head
   def purge(token)
     @head.gsub(token, '')
   end
