@@ -42,7 +42,14 @@ class Jini
 
   # Convert it to a string.
   # @return [String] xpath as string
+  # @raise [InvalidPath] if contain spaces in simple nodes
   def to_s
+    copy = @head.split(%r{//|/})
+    copy.each do |node|
+      if !node.match(/[|]|@|=|>|</) && node.include?(' ')
+        raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space."
+      end
+    end
     @head.to_s
   end
 

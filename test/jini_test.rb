@@ -77,7 +77,7 @@ class JiniTest < Minitest::Test
   end
 
   def test_all_fail
-    assert_raises do
+    assert_raises(Jini::InvalidPath) do
       Jini.new
           .add_node(PARENT)
           .add_attr('key', 'value')
@@ -130,7 +130,7 @@ class JiniTest < Minitest::Test
   end
 
   def test_selection_fail
-    assert_raises do
+    assert_raises(Jini::InvalidPath) do
       Jini.new
           .add_node(PARENT)
           .add_node(CHILD)
@@ -178,5 +178,29 @@ class JiniTest < Minitest::Test
           .add_property('property')
           .to_s
     )
+  end
+
+  def test_to_s_not_raised
+    Jini.new(PARENT)
+           .add_node(CHILD)
+           .add_node(PARENT)
+           .add_node(CHILD)
+           .add_node(PARENT)
+           .add_node(CHILD)
+           .add_attr('key', 'value')
+           .add_node(PARENT)
+           .or('a', 'b')
+           .add_node(CHILD)
+           .to_s
+  end
+
+  def test_to_s_raised_invalid_path
+    assert_raises(Jini::InvalidPath) do
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .or('toy', 'animal')
+          .add_node('p arent')
+          .to_s
+    end
   end
 end
