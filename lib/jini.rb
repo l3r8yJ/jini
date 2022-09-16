@@ -72,6 +72,7 @@ class Jini
   # Xpath with all elements.
   # Addition an '*' to tail of xpath
   # @return [Jini] object
+  # @raise [InvalidPath] when method called after attr
   def all
     raise InvalidPath, 'You cannot add all tag after attr!' if @head[-1].eql?(']')
     Jini.new(add_node('*').to_s)
@@ -89,6 +90,7 @@ class Jini
   # Addition '[index]' to xpath
   # @param position [Integer] number
   # @return [Jini] object
+  # @raise [InvalidPath] when method used after selection
   def at(position)
     raise InvalidPath, 'Cant use at after selection' if @head.include? '::'
     Jini.new("#{@head}[#{position}]")
