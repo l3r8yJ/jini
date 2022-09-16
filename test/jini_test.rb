@@ -169,4 +169,14 @@ class JiniTest < Minitest::Test
           .to_s
     )
   end
+
+  def test_add_property
+    assert_equal(
+      'parent/child/property()',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_property('property')
+          .to_s
+    )
+  end
 end

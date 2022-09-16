@@ -53,6 +53,15 @@ class Jini
     Jini.new("#{@head}/#{node}")
   end
 
+  # Addition property in tail
+  # Before: '../child'
+  # After: '../child/property()'
+  # @param property [String]
+  # @return [Jini] object
+  def add_property(property)
+    Jini.new(add_node("#{property}()").to_s)
+  end
+
   # Additional attribute for xpath.
   # '[@key="value"]'
   # @param key [String] name of attr
