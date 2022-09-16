@@ -65,7 +65,7 @@ class Jini
   # Adds an @value to xpath
   # @param value [String] with value attr
   # @return [Jini] object
-  def all_attr(value)
+  def add_attrs(value)
     Jini.new("#{@head}@#{value}")
   end
 
@@ -81,7 +81,7 @@ class Jini
   # Addition '//node' to xpath
   # @param node [String] name of node
   # @return [Jini] object
-  def add_all(node)
+  def add_nodes(node)
     Jini.new("#{@head}//#{node}")
   end
 
@@ -127,10 +127,10 @@ class Jini
     )
   end
 
-  # Adds '|' to head
+  # Adds '[alpha | beta]' in tail.
   # @param [String] alpha statement
   # @param [String] beta statement
-  # @return [Jini] with Jini '[first|second]' on tail
+  # @return [Jini] with '[first|second]' on tail
   def or(alpha, beta)
     action_between('|', alpha, beta)
   end

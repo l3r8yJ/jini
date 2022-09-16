@@ -115,7 +115,7 @@ class JiniTest < Minitest::Test
   def test_add_all
     assert_equal(
       'parent//children',
-      Jini.new(PARENT).add_all('children').to_s
+      Jini.new(PARENT).add_nodes('children').to_s
     )
   end
 
