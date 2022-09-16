@@ -109,7 +109,9 @@ class Jini
   # @param node [String] name of node for removal
   # @return [Jini] without a node
   def remove_path(node)
-    Jini.new(@head.gsub("/#{node}", ''))
+    Jini.new(
+      purge("/#{node}")
+    )
   end
 
   # Removes attr by name
@@ -121,11 +123,7 @@ class Jini
   # @return [Jini] without an attr
   def remove_attr(name)
     Jini.new(
-      @head
-        .gsub(
-          /(\[@?#{name}="[^"]+"(\[\]+|\]))/,
-          ''
-        )
+      purge(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
     )
   end
 
@@ -160,5 +158,10 @@ class Jini
   # Some action than.
   def sat(action, key, value)
     Jini.new("#{@head}[#{key} #{action} #{value}]")
+  end
+
+  # @param [Regexp | String] token
+  def purge(token)
+    @head.gsub(token, '')
   end
 end
