@@ -78,7 +78,7 @@ class Jini
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
-  # Adds an @value to xpath
+  # Adds '@value' to tail
   # @param value [String] with value attr
   # @return [Jini] object
   def add_attrs(value)

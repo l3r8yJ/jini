@@ -44,6 +44,16 @@ class JiniTest < Minitest::Test
     )
   end
 
+  def test_at_raise_invalid_path
+    assert_raises(Jini::InvalidPath) do
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .selection
+          .at(3)
+          .to_s
+    end
+  end
+
   def test_remove_path
     assert_equal(
       'parent/toy',
@@ -62,6 +72,16 @@ class JiniTest < Minitest::Test
         .add_node('node')
         .add_attr('key', 'value')
         .to_s
+    )
+  end
+
+  def test_add_attrs_success
+    assert_equal(
+      'parent/child@toy',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_attrs('toy')
+          .to_s
     )
   end
 
@@ -112,7 +132,7 @@ class JiniTest < Minitest::Test
     )
   end
 
-  def test_add_all
+  def test_add_nodes
     assert_equal(
       'parent//children',
       Jini.new(PARENT).add_nodes('children').to_s
