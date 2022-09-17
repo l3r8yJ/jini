@@ -104,11 +104,12 @@
     
 <p>It’s a simple XPATH builder.</p>
 
-<p>require ‘jini’ xpath = Jini.new(‘parent’)</p>
-
-<pre class="code ruby"><code class="ruby">.add_node(&#39;child&#39;)
-.add_attr(&#39;toy&#39;, &#39;plane&#39;)
-.to_s // parent/child[@toy=&quot;plane&quot;]
+<pre class="code ruby"><code class="ruby">
+    require ‘jini’
+    xpath = Jini.new(‘parent’)
+        .add_node(&#39;child&#39;)
+        .add_attr(&#39;toy&#39;, &#39;plane&#39;)
+        .to_s // parent/child[@toy=&quot;plane&quot;]
 </code></pre>
 
 

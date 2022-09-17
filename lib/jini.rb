@@ -60,9 +60,7 @@ class Jini
   # @param node [String] name of node for removal
   # @return [Jini] without a node
   def remove_node(node)
-    Jini.new(
-      purge_head("/#{node}")
-    )
+    Jini.new(purge_head("/#{node}"))
   end
 
   # This method replaces *all* origins to new
