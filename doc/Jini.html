@@ -104,12 +104,11 @@
     
 <p>It’s a simple XPATH builder.</p>
 
-<pre class="code ruby"><code class="ruby">
-    require ‘jini’
-    xpath = Jini.new(‘parent’)
-        .add_node(&#39;child&#39;)
-        .add_attr(&#39;toy&#39;, &#39;plane&#39;)
-        .to_s // parent/child[@toy=&quot;plane&quot;]
+<pre class="code ruby"><code class="ruby">require ‘jini’
+xpath = Jini.new(‘parent’)
+    .add_node(&#39;child&#39;)
+    .add_attr(&#39;toy&#39;, &#39;plane&#39;)
+    .to_s // parent/child[@toy=&quot;plane&quot;]
 </code></pre>
 
 
@@ -380,6 +379,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Less than.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_attr_value-instance_method" title="#new_attr_value (instance method)">#<strong>new_attr_value</strong>(name, value)  &#x21d2; Jini </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replaces <strong>all</strong> attr <strong>values</strong> by name.</p>
 </div></span>
   
 </li>
@@ -680,12 +703,12 @@
       <pre class="lines">
 
 
-94
-95
-96</pre>
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_attr'>add_attr</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@head</span><span class='embexpr_end'>}</span><span class='tstring_content'>[@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>=\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -759,12 +782,12 @@
       <pre class="lines">
 
 
-101
-102
-103</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_attrs'>add_attrs</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@head</span><span class='embexpr_end'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -917,12 +940,12 @@
       <pre class="lines">
 
 
-118
-119
-120</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_nodes'>add_nodes</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@head</span><span class='embexpr_end'>}</span><span class='tstring_content'>//</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_node'>node</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -991,12 +1014,12 @@
       <pre class="lines">
 
 
-85
-86
-87</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_property'>add_property</span><span class='lparen'>(</span><span class='id identifier rubyid_property'>property</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_add_node'>add_node</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property'>property</span><span class='embexpr_end'>}</span><span class='tstring_content'>()</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
@@ -1068,13 +1091,13 @@
       <pre class="lines">
 
 
-109
-110
-111
-112</pre>
+135
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all'>all</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="Jini/InvalidPath.html" title="Jini::InvalidPath (class)">InvalidPath</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You cannot add all tag after attr!</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@head</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>]</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1167,13 +1190,13 @@
       <pre class="lines">
 
 
-127
-128
-129
-130</pre>
+153
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_at'>at</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="Jini/InvalidPath.html" title="Jini::InvalidPath (class)">InvalidPath</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cant use at after selection</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@head</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span>
@@ -1254,12 +1277,12 @@
       <pre class="lines">
 
 
-176
-177
-178</pre>
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gt'>gt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_action_between'>action_between</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -1339,15 +1362,118 @@
       <pre class="lines">
 
 
-167
-168
-169</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lt'>lt</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_action_between'>action_between</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_attr_value-instance_method">
+  
+    #<strong>new_attr_value</strong>(name, value)  &#x21d2; <tt><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replaces <strong>all</strong> attr <strong>values</strong> by name. Before: ‘[@id=“some value”]’ After:</p>
+<dl class="rdoc-list label-list"><dt>@id=“new value”
+<dd></dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>of attr</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>upd value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>updated</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_attr_value'>new_attr_value</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_n_rex'>n_rex</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(\[@?</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>=&quot;[^&quot;]+&quot;(\[\]+|\]))</span><span class='regexp_end'>/</span></span>
+  <span class='id identifier rubyid_attr'>attr</span> <span class='op'>=</span> <span class='ivar'>@head</span><span class='lbracket'>[</span><span class='id identifier rubyid_n_rex'>n_rex</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_attr'>attr</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&quot;(.*?)&quot;</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@head</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='id identifier rubyid_n_rex'>n_rex</span><span class='comma'>,</span> <span class='id identifier rubyid_attr'>attr</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_attr'>attr</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1434,12 +1560,12 @@
       <pre class="lines">
 
 
-158
-159
-160</pre>
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='kw'>or</span><span class='lparen'>(</span><span class='id identifier rubyid_alpha'>alpha</span><span class='comma'>,</span> <span class='id identifier rubyid_beta'>beta</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_action_between'>action_between</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_alpha'>alpha</span><span class='comma'>,</span> <span class='id identifier rubyid_beta'>beta</span><span class='rparen'>)</span>
@@ -1513,14 +1639,14 @@
       <pre class="lines">
 
 
-148
-149
-150
-151
-152</pre>
+110
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_attr'>remove_attr</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span>
@@ -1598,17 +1724,13 @@
 
 62
 63
-64
-65
-66</pre>
+64</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/jini.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_node'>remove_node</span><span class='lparen'>(</span><span class='id identifier rubyid_node'>node</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span>
-    <span class='id identifier rubyid_purge_head'>purge_head</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_node'>node</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_purge_head'>purge_head</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_node'>node</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1677,17 +1799,17 @@
       <pre class="lines">
 
 
+69
+70
 71
 72
 73
 74
 75
-76
-77
-78</pre>
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_node'>replace_node</span><span class='lparen'>(</span><span class='id identifier rubyid_origin'>origin</span><span class='comma'>,</span> <span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Jini (class)">Jini</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Jini#initialize (method)">new</a></span></span><span class='lparen'>(</span>
@@ -1764,13 +1886,13 @@
       <pre class="lines">
 
 
-136
-137
-138
-139</pre>
+162
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/jini.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selection'>selection</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="Jini/InvalidPath.html" title="Jini::InvalidPath (class)">InvalidPath</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cannot select, path contains bad symbols</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_bad_symbols?'>bad_symbols?</span> <span class='ivar'>@head</span>
@@ -1867,7 +1989,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Sep 17 07:51:31 2022 by
+  Generated on Sun Sep 18 00:36:17 2022 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.28 (ruby-3.0.0).
 </div>
