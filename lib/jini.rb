@@ -100,6 +100,34 @@ class Jini
     Jini.new("#{@head}@#{value}")
   end
 
+  # Removes attr by name.
+  # before:
+  # '/parent/child [@k="v"]'
+  # after:
+  # '/parent/child'
+  # @param [String] name of attr
+  # @return [Jini] without an attr
+  def remove_attr(name)
+    Jini.new(
+      purge_head(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
+    )
+  end
+
+  # Replaces *all* attr *values* by name.
+  # Before:
+  # '[@id="some value"]'
+  # After:
+  # [@id="new value"]
+  # @param name [String] of attr
+  # @param value [String] upd value
+  # @return [Jini] updated
+  def new_attr_value(name, value)
+    n_rex = /(\[@?#{name}="[^"]+"(\[\]+|\]))/
+    attr = @head[n_rex]
+    attr[/"(.*?)"/] = "\"#{value}\""
+    Jini.new(@head.gsub(n_rex, attr)) unless attr.nil?
+  end
+
   # Xpath with all elements.
   # Addition an '*' to tail of xpath
   # @return [Jini] object
@@ -134,19 +162,6 @@ class Jini
   def selection
     raise InvalidPath, 'Cannot select, path contains bad symbols' if bad_symbols? @head
     Jini.new(@head.gsub('/', '::').to_s)
-  end
-
-  # Removes attr by name.
-  # before:
-  # '/parent/child [@k="v"]'
-  # after:
-  # '/parent/child'
-  # @param [String] name of attr
-  # @return [Jini] without an attr
-  def remove_attr(name)
-    Jini.new(
-      purge_head(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
-    )
   end
 
   # Adds '[alpha | beta]' in tail.

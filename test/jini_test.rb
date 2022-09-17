@@ -261,4 +261,15 @@ class JiniTest < Minitest::Test
           .to_s
     )
   end
+
+  def test_replace_attr
+    assert_equal(
+      'parent/child[@toy="car"]',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_attr('toy', 'plane')
+          .new_attr_value('toy', 'car')
+          .to_s
+    )
+  end
 end
