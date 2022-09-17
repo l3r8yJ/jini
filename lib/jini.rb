@@ -61,7 +61,7 @@ class Jini
   # @return [Jini] without a node
   def remove_node(node)
     Jini.new(
-      purge("/#{node}")
+      purge_head("/#{node}")
     )
   end
 
@@ -77,7 +77,7 @@ class Jini
     )
   end
 
-  # Addition property in tail
+  # Addition property in tail.
   # Before: '../child'
   # After: '../child/property()'
   # @param property [String]
@@ -95,7 +95,7 @@ class Jini
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
-  # Adds '@value' to tail
+  # Adds '@value' to tail.
   # @param value [String] with value attr
   # @return [Jini] object
   def add_attrs(value)
@@ -129,27 +129,25 @@ class Jini
     Jini.new("#{@head}[#{position}]")
   end
 
-  # Replace all '/' to '::' symbols
+  # Replace all '/' to '::' symbols.
   # if path doesn't contain invalid symbols for selection
   # @return [Jini] selection
   # @raise [InvalidPath] when path can't present with select
   def selection
-    if @head.include?('[') || @head.include?(']') || @head.include?('@') || @head.include?('//')
-      raise InvalidPath, 'Cannot select, path contains bad symbols'
-    end
+    raise InvalidPath, 'Cannot select, path contains bad symbols' if bad_symbols? @head
     Jini.new(@head.gsub('/', '::').to_s)
   end
 
-  # Removes attr by name
+  # Removes attr by name.
   # before:
-  # '/parent/child[@k="v"]'
+  # '/parent/child [@k="v"]'
   # after:
   # '/parent/child'
   # @param [String] name of attr
   # @return [Jini] without an attr
   def remove_attr(name)
     Jini.new(
-      purge(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
+      purge_head(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
     )
   end
 
@@ -186,7 +184,16 @@ class Jini
     raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space." if valid? node
   end
 
+  # regex: '[' or ']' or '@' or '//'
+  # @param node [String]
+  # @return node [Boolean] matching regex
+  def bad_symbols?(node)
+    node.match %r{[|]|@|//}
+  end
+
+  # regex: '[' or ']' or '@' or '=' or '<' or '>'
   # @param node [String] node for check
+  # @return node [Boolean] matching regex
   def valid?(node)
     !node.match(/[|]|@|=|>|</) && node.include?(' ')
   end
@@ -196,8 +203,9 @@ class Jini
     Jini.new("#{@head}[#{alpha} #{action} #{beta}]")
   end
 
+  # Purging head from token.
   # @param [Regexp | String] token to be purged from the head
-  def purge(token)
+  def purge_head(token)
     @head.gsub(token, '')
   end
 end
