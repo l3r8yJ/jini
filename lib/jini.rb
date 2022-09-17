@@ -45,11 +45,7 @@ class Jini
   # @raise [InvalidPath] if contain spaces in simple nodes
   def to_s
     copy = @head.split(%r{//|/})
-    copy.each do |node|
-      if !node.match(/[|]|@|=|>|</) && node.include?(' ')
-        raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space."
-      end
-    end
+    copy.each(&method(:space_check))
     @head.to_s
   end
 
@@ -73,11 +69,12 @@ class Jini
   # @param [String] origin node
   # @param [String] new node
   def replace_node(origin, new)
-    copy = @head.split('/')
-    copy.map! do |node|
-      node.eql?(origin) ? new : node
-    end
-    Jini.new(copy.join('/'))
+    Jini.new(
+      @head
+          .split('/')
+          .map! { |node| node.eql?(origin) ? new : node }
+          .join('/')
+    )
   end
 
   # Addition property in tail
@@ -183,6 +180,16 @@ class Jini
   end
 
   private
+
+  # @param node [String] node for check
+  def space_check(node)
+    raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space." if valid? node
+  end
+
+  # @param node [String] node for check
+  def valid?(node)
+    !node.match(/[|]|@|=|>|</) && node.include?(' ')
+  end
 
   # Some action between two statements.
   def action_between(action, alpha, beta)
