@@ -85,7 +85,7 @@ class Jini
   # Before: '../child'
   # After: '../child/property()'
   # @param property [String] to add
-  # @return jini [Jini] with property on tail
+  # @return [Jini] with property on tail
   # @since 0.0.1
   def add_property(property)
     Jini.new(add_node("#{property}()").to_s)
@@ -95,14 +95,14 @@ class Jini
   # '[@key="value"]'
   # @param key [String] name of attr
   # @param value [String] value of attr
-  # @return jini [Jini] with additional attr on tail
+  # @return [Jini] with additional attr on tail
   def add_attr(key, value)
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
   # Adds '@key' to tail.
   # @param key [String] the key
-  # @return jini [Jini]  with additional value on tail
+  # @return [Jini]  with additional value on tail
   def add_attrs(key)
     Jini.new("#{@head}@#{key}")
   end
@@ -113,7 +113,7 @@ class Jini
   # after:
   # '/parent/child'
   # @param [String] name of attr
-  # @return jini [Jini] without an attr
+  # @return [Jini] without an attr
   def remove_attr(name)
     Jini.new(
       purge_head(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
@@ -127,7 +127,7 @@ class Jini
   # '[@id="new value"]'
   # @param name [String] of attr
   # @param value [String] upd value
-  # @return jini [Jini] with replaced attr value
+  # @return [Jini] with replaced attr value
   def new_attr_value(name, value)
     n_rxp = /(\[@?#{name}="[^"]+"(\[\]+|\]))/
     attr = @head[n_rxp]
@@ -147,7 +147,7 @@ class Jini
   # Xpath with all named elements.
   # Addition '//node' to xpath
   # @param node [String] the node
-  # @return jini [Jini] with additional nodes
+  # @return [Jini] with additional nodes
   def add_nodes(node)
     Jini.new("#{@head}//#{node}")
   end
@@ -155,7 +155,7 @@ class Jini
   # Access by index.
   # Addition '[index]' to xpath
   # @param position [Integer] number
-  # @return jini [Jini] with selected index
+  # @return [Jini] with selected index
   # @raise [InvalidPath] when method used after selection
   def at(position)
     raise InvalidPath, 'Cant use at after selection' if @head.include? '::'
@@ -165,7 +165,7 @@ class Jini
   # Replace all '/' to '::'.
   #
   # If path doesn't contain invalid symbols for selection
-  # @return jini [Jini] with selection
+  # @return [Jini] with selection
   # @raise [InvalidPath] when path can't present with select
   def selection
     raise InvalidPath, 'Cannot select, path contains bad symbols' if bad_symbols? @head
@@ -175,7 +175,7 @@ class Jini
   # Adds '[alpha | beta]' in tail.
   # @param alpha [String] the alpha statement
   # @param beta [String] the beta statement
-  # @return jini [Jini] with condition on tail
+  # @return [Jini] with condition on tail
   def or(alpha, beta)
     action_between('|', alpha, beta)
   end
@@ -184,7 +184,7 @@ class Jini
   # Addition '[alpha < beta]' to tail
   # @param alpha [String] the alpha statement
   # @param beta [Object] the beta statement
-  # @return jini [Jini] with condition on tail
+  # @return [Jini] with condition on tail
   def lt(alpha, beta)
     action_between('<', alpha, beta)
   end
@@ -193,7 +193,7 @@ class Jini
   # Addition '[alpha > beta]' to tail
   # @param alpha [String] the alpha statement
   # @param beta [Object] the beta statement
-  # @return jini [Jini] with condition on tail
+  # @return [Jini] with condition on tail
   def gt(alpha, beta)
     action_between('>', alpha, beta)
   end
@@ -207,14 +207,14 @@ class Jini
 
   # regex: '[' or ']' or '@' or '//'
   # @param node [String]
-  # @return node [Boolean] matching regex
+  # @return [Boolean] matching regex
   def bad_symbols?(node)
     node.match %r{[|]|@|//}
   end
 
   # regex: '[' or ']' or '@' or '=' or '<' or '>'
   # @param node [String] node for check
-  # @return node [Boolean] matching regex
+  # @return [Boolean] matching regex
   def valid?(node)
     !node.match(/[|]|@|=|>|</) && node.include?(' ')
   end
