@@ -100,11 +100,11 @@ class Jini
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
-  # Adds '@value' to tail.
-  # @param value [String] the value
+  # Adds '@key' to tail.
+  # @param key [String] the key
   # @return jini [Jini]  with additional value on tail
-  def add_attrs(value)
-    Jini.new("#{@head}@#{value}")
+  def add_attrs(key)
+    Jini.new("#{@head}@#{key}")
   end
 
   # Removes attr by name.
@@ -181,7 +181,7 @@ class Jini
   end
 
   # Less than.
-  # Addition '[node < value]' to tail
+  # Addition '[alpha < beta]' to tail
   # @param alpha [String] the alpha statement
   # @param beta [Object] the beta statement
   # @return jini [Jini] with condition on tail
@@ -190,7 +190,7 @@ class Jini
   end
 
   # Greater than.
-  # Addition '[node > value]' to tail
+  # Addition '[alpha > beta]' to tail
   # @param alpha [String] the alpha statement
   # @param beta [Object] the beta statement
   # @return jini [Jini] with condition on tail
