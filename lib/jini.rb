@@ -29,6 +29,7 @@
 #   .add_node('child')
 #   .add_attr('toy', 'plane')
 #   .to_s // parent/child[@toy="plane"]
+#
 class Jini
   # When path not valid
   class InvalidPath < StandardError; end
@@ -36,6 +37,7 @@ class Jini
   # Makes new object.
   # By default it creates an empty path and you can ignore the head parameter.
   # @param head [String]
+  # @since 0.0.1
   def initialize(head = '')
     @head = head
   end
@@ -43,6 +45,7 @@ class Jini
   # Convert it to a string.
   # @return [String] xpath as string
   # @raise [InvalidPath] if contain spaces in simple nodes
+  # @since 0.0.1
   def to_s
     copy = @head.split(%r{//|/})
     copy.each(&method(:space_check))
@@ -50,22 +53,25 @@ class Jini
   end
 
   # Additional node for xpath.
-  # @param node [String] node
-  # @return [Jini] object
+  # @param node [String] the node
+  # @return [Jini] object with additional node
+  # @since 0.0.1
   def add_node(node)
     Jini.new("#{@head}/#{node}")
   end
 
   # Removes node by name
-  # @param node [String] name of node for removal
+  # @param node [String] the node for removal
   # @return [Jini] without a node
+  # @since 0.0.7
   def remove_node(node)
     Jini.new(purge_head("/#{node}"))
   end
 
   # This method replaces *all* origins to new
-  # @param [String] origin node
-  # @param [String] new node
+  # @param origin [String] origin node
+  # @param new [String] new one
+  # @since 0.1.0
   def replace_node(origin, new)
     Jini.new(
       @head
@@ -78,8 +84,9 @@ class Jini
   # Addition property in tail.
   # Before: '../child'
   # After: '../child/property()'
-  # @param property [String]
-  # @return [Jini] object
+  # @param property [String] to add
+  # @return jini [Jini] with property on tail
+  # @since 0.0.1
   def add_property(property)
     Jini.new(add_node("#{property}()").to_s)
   end
@@ -88,14 +95,14 @@ class Jini
   # '[@key="value"]'
   # @param key [String] name of attr
   # @param value [String] value of attr
-  # @return [Jini] object
+  # @return jini [Jini] with additional attr on tail
   def add_attr(key, value)
     Jini.new("#{@head}[@#{key}=\"#{value}\"]")
   end
 
   # Adds '@value' to tail.
-  # @param value [String] with value attr
-  # @return [Jini] object
+  # @param value [String] the value
+  # @return jini [Jini]  with additional value on tail
   def add_attrs(value)
     Jini.new("#{@head}@#{value}")
   end
@@ -106,7 +113,7 @@ class Jini
   # after:
   # '/parent/child'
   # @param [String] name of attr
-  # @return [Jini] without an attr
+  # @return jini [Jini] without an attr
   def remove_attr(name)
     Jini.new(
       purge_head(/(\[@?#{name}="[^"]+"(\[\]+|\]))/)
@@ -117,15 +124,15 @@ class Jini
   # Before:
   # '[@id="some value"]'
   # After:
-  # [@id="new value"]
+  # '[@id="new value"]'
   # @param name [String] of attr
   # @param value [String] upd value
-  # @return [Jini] updated
+  # @return jini [Jini] with replaced attr value
   def new_attr_value(name, value)
-    n_rex = /(\[@?#{name}="[^"]+"(\[\]+|\]))/
-    attr = @head[n_rex]
+    n_rxp = /(\[@?#{name}="[^"]+"(\[\]+|\]))/
+    attr = @head[n_rxp]
     attr[/"(.*?)"/] = "\"#{value}\""
-    Jini.new(@head.gsub(n_rex, attr)) unless attr.nil?
+    Jini.new(@head.gsub(n_rxp, attr)) unless attr.nil?
   end
 
   # Xpath with all elements.
@@ -139,8 +146,8 @@ class Jini
 
   # Xpath with all named elements.
   # Addition '//node' to xpath
-  # @param node [String] name of node
-  # @return [Jini] object
+  # @param node [String] the node
+  # @return jini [Jini] with additional nodes
   def add_nodes(node)
     Jini.new("#{@head}//#{node}")
   end
@@ -148,16 +155,17 @@ class Jini
   # Access by index.
   # Addition '[index]' to xpath
   # @param position [Integer] number
-  # @return [Jini] object
+  # @return jini [Jini] with selected index
   # @raise [InvalidPath] when method used after selection
   def at(position)
     raise InvalidPath, 'Cant use at after selection' if @head.include? '::'
     Jini.new("#{@head}[#{position}]")
   end
 
-  # Replace all '/' to '::' symbols.
-  # if path doesn't contain invalid symbols for selection
-  # @return [Jini] selection
+  # Replace all '/' to '::'.
+  #
+  # If path doesn't contain invalid symbols for selection
+  # @return jini [Jini] with selection
   # @raise [InvalidPath] when path can't present with select
   def selection
     raise InvalidPath, 'Cannot select, path contains bad symbols' if bad_symbols? @head
@@ -165,29 +173,29 @@ class Jini
   end
 
   # Adds '[alpha | beta]' in tail.
-  # @param [String] alpha statement
-  # @param [String] beta statement
-  # @return [Jini] with '[first|second]' on tail
+  # @param alpha [String] the alpha statement
+  # @param beta [String] the beta statement
+  # @return jini [Jini] with condition on tail
   def or(alpha, beta)
     action_between('|', alpha, beta)
   end
 
   # Less than.
   # Addition '[node < value]' to tail
-  # @param [String] key name
-  # @param [Object] value
-  # @return [Jini]
-  def lt(key, value)
-    action_between('<', key, value)
+  # @param alpha [String] the alpha statement
+  # @param beta [Object] the beta statement
+  # @return jini [Jini] with condition on tail
+  def lt(alpha, beta)
+    action_between('<', alpha, beta)
   end
 
   # Greater than.
   # Addition '[node > value]' to tail
-  # @param [String] key name
-  # @param [Object] value
-  # @return [Jini]
-  def gt(key, value)
-    action_between('>', key, value)
+  # @param alpha [String] the alpha statement
+  # @param beta [Object] the beta statement
+  # @return jini [Jini] with condition on tail
+  def gt(alpha, beta)
+    action_between('>', alpha, beta)
   end
 
   private
