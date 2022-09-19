@@ -221,7 +221,7 @@ class Jini
   # @param node [String]
   # @return [Boolean] matching regex
   def bad_symbols?(node)
-    node.match %r{[|]|@|//}
+    !!node.match(%r{[|]|@|//}) unless node.nil?
   end
 
   # regex: '[' or ']' or '@' or '=' or '<' or '>'
