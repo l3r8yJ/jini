@@ -28,7 +28,7 @@ require_relative 'test_helper'
 
 # Jini test.
 # Author:: Ivan Ivanchuk (clicker.heroes.acg@gmail.com)
-# Copyright:: Copyright (c) 2022-2022 Ivan Ivanchuck
+# Copyright:: Copyright (c) 2022 Ivan Ivanchuck
 # License:: MIT
 class JiniTest < Minitest::Test
   PARENT = 'parent'
@@ -269,6 +269,17 @@ class JiniTest < Minitest::Test
           .add_node(CHILD)
           .add_attr('toy', 'plane')
           .new_attr_value('toy', 'car')
+          .to_s
+    )
+  end
+
+  def test_remove_property
+    assert_equal(
+      'parent/child/',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_property('p')
+          .remove_property('p')
           .to_s
     )
   end

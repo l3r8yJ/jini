@@ -22,6 +22,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# The jini.
+# Author:: Ivan Ivanchuk (clicker.heroes.acg@gmail.com)
+# Copyright:: Copyright (c) 2022 Ivan Ivanchuck
+# License:: MIT
+#
 # It's a simple XPATH builder.
 #
 # require 'jini'
@@ -82,8 +87,7 @@ class Jini
   end
 
   # Addition property in tail.
-  # Before: '../child'
-  # After: '../child/property()'
+  # @example before: '../child', after: '../child/property()'
   # @param property [String] to add
   # @return [Jini] with property on tail
   # @since 0.0.1
@@ -91,8 +95,16 @@ class Jini
     Jini.new(add_node("#{property}()").to_s)
   end
 
+  # Removes property.
+  # @param property [String] to remove
+  # @return [Jini] without property on tail
+  # @since 0.1.3
+  def remove_property(property)
+    Jini.new(@head.gsub("#{property}()", ''))
+  end
+
   # Additional attribute for xpath.
-  # '[@key="value"]'
+  # @example'[@key="value"]'
   # @param key [String] name of attr
   # @param value [String] value of attr
   # @return [Jini] with additional attr on tail
