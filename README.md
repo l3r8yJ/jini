@@ -33,3 +33,7 @@ gem 'jini'
 
 Pay attention, it is not a parser. The only functionality this gem provides
 is _building_ XPATHs.
+
+## New features requests
+If you find an error, simply create a new `Issue`
+and describe what happened, also try to add/fix something and send pull request.
