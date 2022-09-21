@@ -2,7 +2,7 @@
 
 # (The MIT License)
 #
-# Copyright (c) 2022-2022 Ivanchuk Ivan
+# Copyright (c) 2022 Ivanchuk Ivan
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -28,7 +28,7 @@
 # License:: MIT
 #
 # It's a simple XPATH builder.
-#
+# <p></p>
 # require 'jini'
 # xpath = Jini.new('parent')
 #   .add_node('child')
