@@ -310,7 +310,15 @@ class JiniTest < Minitest::Test
         'under_attr',
         'many[3]'
       ),
-      Jini.new('parent/child[@key="value"]/under_attr/many[3]').nodes
+      Jini.new('parent/child[@key="value"]/under_attr//many[3]').nodes
     )
+  end
+
+  def test_nodes_raises_invalid_path
+    assert_raises(Jini::InvalidPath) do
+      Jini.new("#{PARENT}//")
+          .add_nodes(CHILD)
+          .nodes
+    end
   end
 end
