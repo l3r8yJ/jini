@@ -92,7 +92,7 @@ class Jini
     checked = @head
       .split(%r{(//|/)})
       .each(&method(:empty_check))
-    checked.each { |node| checked.delete node if node.eql? '//' or node.eql? '/' }.to_a
+    checked.each { |node| checked.delete node if node.eql?('//') || node.eql?('/') }.to_a
   end
 
   # Addition property in tail.
