@@ -65,7 +65,7 @@ class Jini
     Jini.new("#{@head}/#{node}")
   end
 
-  # Removes node by name
+  # Removes node by name.
   # @param node [String] the node for removal
   # @return [Jini] without a node
   # @since 0.0.7
@@ -73,7 +73,7 @@ class Jini
     Jini.new(purge_head("/#{node}"))
   end
 
-  # This method replaces *all* origins to new
+  # This method replaces *all* origins to new.
   # @param origin [String] origin node
   # @param new [String] new one
   # @since 0.1.0
@@ -84,6 +84,15 @@ class Jini
           .map! { |node| node.eql?(origin) ? new : node }
           .join('/')
     )
+  end
+
+  # All nodes in xpath.
+  # @return nodes [Array]
+  def nodes
+    checked = @head
+      .split(%r{(//|/)})
+      .each(&method(:empty_check))
+    checked.each { |node| checked.delete node if node.eql? '//' or node.eql? '/' }.to_a
   end
 
   # Addition property in tail.
@@ -213,18 +222,23 @@ class Jini
   private
 
   # @param node [String] node for check
+  def empty_check(node)
+    raise InvalidPath, 'Invalid path, empty node' if node.length.eql? 0
+  end
+
+  # @param node [String] node for check
   def space_check(node)
     raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space." if valid? node
   end
 
-  # regex: '[' or ']' or '@' or '//'
+  # Regex: '[' or ']' or '@' or '//'.
   # @param node [String]
   # @return [Boolean] matching regex
   def bad_symbols?(node)
     !!node.match(%r{[|]|@|//}) unless node.nil?
   end
 
-  # regex: '[' or ']' or '@' or '=' or '<' or '>'
+  # Regex: '[' or ']' or '@' or '=' or '<' or '>'.
   # @param node [String] node for check
   # @return [Boolean] matching regex
   def valid?(node)

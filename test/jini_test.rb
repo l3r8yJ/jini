@@ -283,4 +283,24 @@ class JiniTest < Minitest::Test
           .to_s
     )
   end
+
+  def test_nodes
+    exp = []
+    exp.append(
+      'parent',
+      'child[@key="value"]',
+      'under_attr',
+      'many[3]'
+    )
+    assert_equal(
+      exp,
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_attr('key', 'value')
+          .add_node('under_attr')
+          .add_nodes('many')
+          .at(3)
+          .nodes
+    )
+  end
 end
