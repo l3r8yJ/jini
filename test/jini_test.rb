@@ -301,4 +301,16 @@ class JiniTest < Minitest::Test
           .nodes
     )
   end
+
+  def test_nodes_ctor
+    assert_equal(
+      [].append(
+        'parent',
+        'child[@key="value"]',
+        'under_attr',
+        'many[3]'
+      ),
+      Jini.new('parent/child[@key="value"]/under_attr/many[3]').nodes
+    )
+  end
 end
