@@ -2,7 +2,7 @@
 
 # (The MIT License)
 #
-# Copyright (c) 2022-2022 Ivanchuk Ivan
+# Copyright (c) 2022 Ivanchuk Ivan
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -262,13 +262,13 @@ class JiniTest < Minitest::Test
     )
   end
 
-  def test_replace_attr
+  def test_replace_attr_value
     assert_equal(
       'parent/child[@toy="car"]',
       Jini.new(PARENT)
           .add_node(CHILD)
           .add_attr('toy', 'plane')
-          .new_attr_value('toy', 'car')
+          .replace_attr_value('toy', 'car')
           .to_s
     )
   end

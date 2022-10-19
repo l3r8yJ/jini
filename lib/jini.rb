@@ -87,8 +87,8 @@ class Jini
     )
   end
 
-  # All nodes in xpath.
-  # @return nodes [Array]
+  # All nodes in xpath as array.
+  # @return nodes as [Array]
   def nodes
     checked = @head
       .split(%r{(//|/)})
@@ -150,7 +150,7 @@ class Jini
   # @param name [String] of attr
   # @param value [String] upd value
   # @return [Jini] with replaced attr value
-  def new_attr_value(name, value)
+  def replace_attr_value(name, value)
     n_rxp = /(\[@?#{name}="[^"]+"(\[\]+|\]))/
     attr = @head[n_rxp]
     attr[/"(.*?)"/] = "\"#{value}\""
