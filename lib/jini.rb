@@ -28,7 +28,8 @@
 # License:: MIT
 #
 # It's a simple XPATH builder.
-# <p></p>
+# Class is thread safe.
+#
 # require 'jini'
 # xpath = Jini.new('parent')
 #   .add_node('child')
