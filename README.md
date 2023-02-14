@@ -35,5 +35,5 @@ Pay attention, it is not a parser. The only functionality this gem provides
 is _building_ XPATHs.
 
 ## New features requests
-If you find an error, or you want to add new functionality, simply create a new `Issue`
+If you find an error, or you want to add new functionality, just create a new `Issue`
 and describe what happened, also try to add/fix something and send pull request.
