@@ -58,6 +58,53 @@ class Jini
     @head.to_s
   end
 
+  class << self
+    # From.
+    # Creates new Jini object from XPATH.
+    #
+    # @param [String] xpath
+    # @raise [InvalidPath] when XPATH is invalid
+    # @return [Jini] object
+    def from(xpath)
+      raise InvalidPath, 'XPATH isn\'t valid' unless xpath_match?(xpath)
+      Jini.new(xpath)
+    end
+
+    private
+
+    # This regex matches general case of XPATH.
+    # @param xpath [String]
+    # @return [Boolean] matching regex
+    def xpath_match?(xpath)
+      xpath_regex = %r{\A/?#{namespace_regex}(/#{namespace_regex})*#{bracket_regex}*(#{attr_regex})*((#{or_regex}#{namespace_regex}#{bracket_regex}*(#{attr_regex})*)*)?\Z}
+      xpath.match?(xpath_regex)
+    end
+
+    def prefix_regex
+      %r{^/?}
+    end
+
+    def tag_regex
+      /([a-zA-Z0-9]+:)?[a-zA-Z0-9]+/
+    end
+
+    def bracket_regex
+      /(\[[^\[\]]*\])/
+    end
+
+    def attr_regex
+      /@\w+=[^\]]+/
+    end
+
+    def or_regex
+      /(\|)/
+    end
+
+    def namespace_regex
+      /([a-zA-Z0-9]+:)?[a-zA-Z0-9]+/
+    end
+  end
+
   # Additional node for xpath.
   # @param node [String] the node
   # @return [Jini] object with additional node
@@ -237,7 +284,7 @@ class Jini
 
   # @param node [String] node for check
   def space_check(node)
-    raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space." if valid? node
+    raise InvalidPath, "Nodes can't contain spaces: #{node} – contain space." if valid_node? node
   end
 
   # Regex: '[' or ']' or '@' or '//'.
@@ -250,7 +297,7 @@ class Jini
   # Regex: '[' or ']' or '@' or '=' or '<' or '>'.
   # @param node [String] node for check
   # @return [Boolean] matching regex
-  def valid?(node)
+  def valid_node?(node)
     !node.match(/[|]|@|=|>|</) && node.include?(' ')
   end
 

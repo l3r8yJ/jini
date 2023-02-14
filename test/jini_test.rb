@@ -329,5 +329,15 @@ class JiniTest < Minitest::Test
           .to_s
     )
   end
+
+  def test_from_xpath_success
+    Jini.from('/parent/child[@toy="plane"]')
+  end
+
+  def test_from_xpath_fails
+    assert_raises(Jini::InvalidPath) do
+      Jini.from('/parent/chld[')
+    end
+  end
 end
 # rubocop:enable Metrics/ClassLength
