@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-# (The MIT License)
-#
 # Copyright (c) 2022 Ivanchuk Ivan
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,13 +22,15 @@ require_relative '../lib/jini'
 require 'minitest/autorun'
 require_relative 'test_helper'
 
-# Jini test.
-# Author:: Ivan Ivanchuk (clicker.heroes.acg@gmail.com)
-# Copyright:: Copyright (c) 2022 Ivan Ivanchuck
+# Test for Jini class.
+# Author:: Ivanchuk Ivan (clicker.heroes.acg@gmail.com)
+# Copyright:: Copyright (c) 2022 Ivanchuck Ivan
 # License:: MIT
+# rubocop:disable Metrics/ClassLength
 class JiniTest < Minitest::Test
-  PARENT = 'parent'
-  CHILD = 'child'
+  PARENT = 'parent'.freeze
+  CHILD = 'child'.freeze
+
   def test_add_path_and_at_success
     assert_equal(
       '/parent/child[1]',
@@ -321,4 +319,15 @@ class JiniTest < Minitest::Test
           .nodes
     end
   end
+
+  def test_count_success
+    assert_equal(
+      'count(parent/child)',
+      Jini.new(PARENT)
+          .add_node(CHILD)
+          .count
+          .to_s
+    )
+  end
 end
+# rubocop:enable Metrics/ClassLength

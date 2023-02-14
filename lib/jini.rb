@@ -81,9 +81,9 @@ class Jini
   def replace_node(origin, new)
     Jini.new(
       @head
-          .split('/')
-          .map! { |node| node.eql?(origin) ? new : node }
-          .join('/')
+      .split('/')
+      .map! { |node| node.eql?(origin) ? new : node }
+      .join('/')
     )
   end
 
@@ -91,8 +91,8 @@ class Jini
   # @return nodes as [Array]
   def nodes
     checked = @head
-      .split(%r{(//|/)})
-      .each(&method(:empty_check))
+    .split(%r{(//|/)})
+    .each(&method(:empty_check))
     checked.each { |node| checked.delete node if node.eql?('//') || node.eql?('/') }.to_a
   end
 
@@ -127,6 +127,12 @@ class Jini
   # @return [Jini]  with additional value on tail
   def add_attrs(key)
     Jini.new("#{@head}@#{key}")
+  end
+
+  # Just wrap current XPATH into count() function
+  # @return [Jini] wrapped
+  def count
+    Jini.new("count(#{@head})")
   end
 
   # Removes attr by name.
