@@ -29,13 +29,13 @@
 #
 # It's a simple XPATH builder.
 # Class is thread safe.
-#
-# require 'jini'
-# xpath = Jini.new('parent')
-#   .add_node('child')
-#   .add_attr('toy', 'plane')
-#   .to_s // parent/child[@toy="plane"]
-#
+# Example:
+#   require 'jini'
+#   xpath = Jini.new('parent')
+#               .add_node('child')
+#               .add_attr('toy', 'plane')
+#               .to_s
+# => 'parent/child[@toy="plane"]
 class Jini
   # When path not valid
   class InvalidPath < StandardError; end
@@ -97,7 +97,9 @@ class Jini
   end
 
   # Addition property in tail.
-  # @example before: '../child', after: '../child/property()'
+  # Example:
+  #   >> Jini.new('node/').property('prop').to_s
+  #   => node/property()
   # @param property [String] to add
   # @return [Jini] with property on tail
   # @since 0.0.1
