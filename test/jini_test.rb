@@ -332,7 +332,7 @@ class JiniTest < Minitest::Test
 
   def test_from_xpath_success
     assert_nothing_raised do
-      Jini.from('/parent/child[@toy="plane"]')
+      Jini.from('/parent/child[@toy="plane"')
     end
   end
 
