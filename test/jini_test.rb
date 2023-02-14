@@ -331,7 +331,9 @@ class JiniTest < Minitest::Test
   end
 
   def test_from_xpath_success
-    Jini.from('/parent/child[@toy="plane"]')
+    assert_nothing_raised do
+      Jini.from('/parent/child[@toy="plane"]')
+    end
   end
 
   def test_from_xpath_fails

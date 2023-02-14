@@ -24,6 +24,14 @@ $stdout.sync = true
 
 require 'simplecov'
 
+module Minitest
+  module Assertions
+    def assert_nothing_raised(*)
+      yield
+    end
+  end
+end
+
 SimpleCov.start
 if ENV['CI'] == 'true'
   require 'codecov'
