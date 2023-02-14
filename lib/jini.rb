@@ -68,10 +68,6 @@ class Jini
       Jini.new(xpath)
     end
 
-    def split(xpath)
-      xpath.split(xpath_regex)
-    end
-
     private
 
     # This regex matches general case of XPATH.
