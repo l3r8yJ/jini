@@ -283,6 +283,14 @@ class JiniTest < Minitest::Test
   end
 
   def test_nodes
+    nodes = Jini.new(PARENT)
+          .add_node(CHILD)
+          .add_attr('key', 'value')
+          .add_node('under_attr')
+          .add_nodes('many')
+          .at(3)
+          .nodes
+    assert_includes(nodes, 'under_attr')
     assert_equal(
       [].append(
         'parent',
@@ -290,13 +298,7 @@ class JiniTest < Minitest::Test
         'under_attr',
         'many[3]'
       ),
-      Jini.new(PARENT)
-          .add_node(CHILD)
-          .add_attr('key', 'value')
-          .add_node('under_attr')
-          .add_nodes('many')
-          .at(3)
-          .nodes
+      nodes
     )
   end
 
@@ -331,15 +333,18 @@ class JiniTest < Minitest::Test
   end
 
   def test_from_xpath_success
+    x = '/parent/child[@toy="plane"]'
+    jini = Jini.new('/parent').add_node(CHILD).add_attr('toy', 'plane')
     assert_nothing_raised do
-      Jini.from('/parent/child[@toy="plane"]')
+      Jini.from x
+      Jini.from jini.to_s
     end
+    assert_equal Jini.from(x), Jini.from(jini.to_s)
   end
 
   def test_from_xpath_fails
-    assert_raises(Jini::InvalidPath) do
-      Jini.from('/parent/chld[')
-    end
+    assert_raises(Jini::InvalidPath) { Jini.from '/parent/chld[' }
+    assert_raises(Jini::InvalidPath) { Jini.from '' }
   end
 end
 # rubocop:enable Metrics/ClassLength

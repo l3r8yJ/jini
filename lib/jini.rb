@@ -118,6 +118,10 @@ class Jini
     end
   end
 
+  def ==(other)
+    self.class == other.class && to_s == other.to_s
+  end
+
   # Additional node for xpath.
   # @param node [String] the node
   # @return [Jini] object with additional node
