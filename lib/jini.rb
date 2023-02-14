@@ -38,6 +38,9 @@ class Jini
   # When path not valid
   class InvalidPath < StandardError; end
 
+  # When method not found
+  class UnsupportedOperation < StandardError; end
+
   # Makes new object.
   # By default it creates an empty path and you can ignore the head parameter.
   # @param head [String]
@@ -323,5 +326,13 @@ class Jini
   # @param [Regexp | String] token to be purged from the head
   def purge_head(token)
     @head.gsub(token, '')
+  end
+
+  def method_missing(method_name, *_args)
+    raise UnsupportedOperation, "The method #{method_name} was not found!"
+  end
+
+  def respond_to_missing?(_method_name, _include_private = false)
+    true
   end
 end

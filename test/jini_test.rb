@@ -346,5 +346,11 @@ class JiniTest < Minitest::Test
     assert_raises(Jini::InvalidPath) { Jini.from '/parent/chld[' }
     assert_raises(Jini::InvalidPath) { Jini.from '' }
   end
+
+  def test_method_missing_fails
+    assert_raises(Jini::UnsupportedOpertaion) do
+      Jini.new.bark
+    end
+  end
 end
 # rubocop:enable Metrics/ClassLength
