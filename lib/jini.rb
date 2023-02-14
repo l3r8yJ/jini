@@ -76,7 +76,6 @@ class Jini
     # @param xpath [String]
     # @return [Boolean] matching regex
     def xpath_match?(xpath)
-      xpath_regex = %r{\A/?#{namespace_regex}(/#{namespace_regex})*#{bracket_regex}*(#{attr_regex})*((#{or_regex}#{namespace_regex}#{bracket_regex}*(#{attr_regex})*)*)?\Z}
       xpath.match?(xpath_regex)
     end
 
@@ -102,6 +101,18 @@ class Jini
 
     def namespace_regex
       /([a-zA-Z0-9]+:)?[a-zA-Z0-9]+/
+    end
+
+    def sub_xpath_regex
+      /#{namespace_regex}#{bracket_regex}*(#{attr_regex})*/
+    end
+
+    def or_sub_xpath_regex
+      /#{or_regex}#{namespace_regex}#{bracket_regex}*(#{attr_regex})*/
+    end
+
+    def xpath_regex
+      %r{\A#{prefix_regex}#{namespace_regex}(/#{sub_xpath_regex})*#{or_sub_xpath_regex}*(/#{sub_xpath_regex})*\Z}
     end
   end
 
