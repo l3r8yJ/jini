@@ -5,13 +5,13 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to? :required_rubygems_version=
   s.required_ruby_version = '>=2.6.8'
   s.name = 'jini'
-  s.version = '1.2.5'
+  s.version = '1.2.6'
   s.license = 'MIT'
   s.summary = 'Simple Immutable Ruby XPATH Builder'
   s.description = 'Class Jini helps you build a XPATH and then modify its parts via a simple fluent interface.'
   s.authors = ['Ivan Ivanchuck']
   s.email = 'clicker.heroes.acg@gmail.com'
-  s.homepage = 'https://github.com/l3r8yJ/jini'
+  s.homepage = 'https://l3r8yj.github.io/jini.github/'
   s.files = `git ls-files`.split($RS)
   s.rdoc_options = ['--charset=UTF-8']
   s.extra_rdoc_files = ['README.md']
