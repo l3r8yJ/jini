@@ -1,6 +1,4 @@
-
-# Jini
-[<img src="https://user-images.githubusercontent.com/46355873/219519979-7c9dcce3-ceb9-4b09-932c-f68b98841f54.svg" width="150"/>](219519979-7c9dcce3-ceb9-4b09-932c-f68b98841f54.svg)
+[<img src="https://user-images.githubusercontent.com/46355873/219703617-d5a6ea84-6f99-403a-b291-c924643ea106.svg" width="150"/>](219703617-d5a6ea84-6f99-403a-b291-c924643ea106.svg)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
