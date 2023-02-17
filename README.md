@@ -1,4 +1,4 @@
-[<img src="https://user-images.githubusercontent.com/46355873/219703617-d5a6ea84-6f99-403a-b291-c924643ea106.svg" width="150"/>](219703617-d5a6ea84-6f99-403a-b291-c924643ea106.svg)
+[<img src="https://raw.githubusercontent.com/l3r8yJ/jini.github/84856ea75deb133a95f0a160549c5d97089dc3ab/default-monochrome-black.svg" width="150"/>](219703617-d5a6ea84-6f99-403a-b291-c924643ea106.svg)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
