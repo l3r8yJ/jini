@@ -4,7 +4,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
-The class [`Jini`](https://www.rubydoc.info/gems/jini/1.2.5/Jini) helps you build a XPATH.
+The class [`Jini`](https://www.rubydoc.info/gems/jini/1.2.5/Jini) helps you build an XPATH.
 
 ```ruby
 require 'jini'
