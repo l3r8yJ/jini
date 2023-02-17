@@ -1,5 +1,6 @@
 
 # Jini
+[<img src="https://user-images.githubusercontent.com/46355873/219519979-7c9dcce3-ceb9-4b09-932c-f68b98841f54.svg" width="150"/>](219519979-7c9dcce3-ceb9-4b09-932c-f68b98841f54.svg)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
@@ -8,7 +9,8 @@ The class [`Jini`](https://www.rubydoc.info/gems/jini/1.2.5/Jini) helps you buil
 ```ruby
 require 'jini'
 xpath = Jini
-  .new
+  .new![jini](https://user-images.githubusercontent.com/46355873/219519836-1cc268c6-ef55-4014-8aa0-323d4d5856f8.svg)
+
   .add_node('parent') # addition a path node
   .add_node('child') # addition a path node 
   .add_attr('key', 'value') # addition an attribute
