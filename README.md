@@ -1,14 +1,12 @@
-
-# Jini
+[<img src="https://raw.githubusercontent.com/l3r8yJ/jini.github/84856ea75deb133a95f0a160549c5d97089dc3ab/default-monochrome-black.svg" width="150"/>](https://l3r8yj.github.io/jini.github/)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
-The class [`Jini`](https://www.rubydoc.info/gems/jini/1.2.5/Jini) helps you build a XPATH.
+The class [`Jini`](https://www.rubydoc.info/gems/jini/1.2.5/Jini) helps you build an XPATH.
 
 ```ruby
 require 'jini'
-xpath = Jini
-  .new
+xpath = Jini.new
   .add_node('parent') # addition a path node
   .add_node('child') # addition a path node 
   .add_attr('key', 'value') # addition an attribute
