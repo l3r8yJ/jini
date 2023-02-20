@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'cucumber'
+gem 'rake'
 
 group :test do
   gem 'codecov'
