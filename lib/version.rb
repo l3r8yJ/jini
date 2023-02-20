@@ -23,5 +23,5 @@
 # Copyright:: Copyright (c) 2023 Ivan Ivanchuck
 # License:: MIT
 module JiniBase
-  VERSION = '0.0.0'.freeze
+  VERSION = '1.3.0'.freeze
 end
