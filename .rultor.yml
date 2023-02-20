@@ -1,0 +1,16 @@
+install: |
+  pdd -f /dev/null
+  sudo bundle install --no-color "--gemfile=$(pwd)/Gemfile"
+release:
+  script: |-
+    bundle exec rake
+    rm -rf *.gem
+    sed -i "s/0\.0\.0/${tag}/g" lib/mergem/version.rb
+    git add lib/mergem/version.rb
+    git commit -m "version set to ${tag}"
+    gem build mergem.gemspec
+    chmod 0600 ../rubygems.yml
+    gem push *.gem --key ${{ env.RUBYGEMS_API_KEY }}
+merge:
+  script: |-
+    bundle exec rake
