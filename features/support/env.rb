@@ -18,10 +18,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Jini main module.
-# Author:: Ivan Ivanchuck (l3r8y@duck.com)
-# Copyright:: Copyright (c) 2023 Ivan Ivanchuck
-# License:: MIT
-module Jini
-  VERSION = '0.0.0'.freeze
-end
+require 'simplecov'
