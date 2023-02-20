@@ -1,7 +1,7 @@
 architect:
   - l3r8yJ
 assets:
-  rubygems.yml: l3r8yJ/home#assets/rubygems.yml
+  rubygems.yml: l3r8yJ/home#rubygems.yml
 install: |
   pdd -f /dev/null
   sudo bundle install --no-color "--gemfile=$(pwd)/Gemfile"
