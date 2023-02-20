@@ -23,7 +23,6 @@
 $stdout.sync = true
 
 require 'simplecov'
-
 module Minitest
   module Assertions
     def assert_nothing_raised(*)
@@ -37,3 +36,5 @@ if ENV['CI'] == 'true'
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
+
+require 'minitest/autorun'

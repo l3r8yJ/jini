@@ -22,6 +22,6 @@
 # Author:: Ivan Ivanchuck (l3r8y@duck.com)
 # Copyright:: Copyright (c) 2023 Ivan Ivanchuck
 # License:: MIT
-module JiniBase
+module Jini
   VERSION = '0.0.0'.freeze
 end

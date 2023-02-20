@@ -18,9 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require_relative 'test_helper'
 require_relative '../lib/jini'
 require 'minitest/autorun'
-require_relative 'test_helper'
 
 # Test for Jini class.
 # Author:: Ivanchuk Ivan (clicker.heroes.acg@gmail.com)
