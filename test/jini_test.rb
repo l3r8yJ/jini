@@ -348,7 +348,7 @@ class JiniTest < Minitest::Test
   end
 
   def test_method_missing_fails
-    assert_raises(Jini::UnsupportedOpertaion) do
+    assert_raises(Jini::UnsupportedOperation) do
       Jini.new.bark
     end
   end
