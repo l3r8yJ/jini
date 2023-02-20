@@ -1,5 +1,5 @@
-docker:
-  image: yegor256/rultor-image:1.13.0
+architect:
+  - l3r8yJ
 assets:
   rubygems.yml: l3r8yJ/secrets#assets/rubygems.yml
 install: |
