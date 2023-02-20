@@ -9,7 +9,6 @@ release:
     git add lib/version.rb
     git commit -m "version set to ${tag}"
     gem build jini.gemspec
-    chmod 0600 ../rubygems.yml
     gem push *.gem --key ${{ env.RUBYGEMS_API_KEY }}
 merge:
   script: |-
