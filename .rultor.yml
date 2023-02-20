@@ -5,8 +5,8 @@ release:
   script: |-
     bundle exec rake
     rm -rf *.gem
-    sed -i "s/0\.0\.0/${tag}/g" lib/jini/version.rb
-    git add lib/jini/version.rb
+    sed -i "s/0\.0\.0/${tag}/g" lib/version.rb
+    git add lib/version.rb
     git commit -m "version set to ${tag}"
     gem build jini.gemspec
     chmod 0600 ../rubygems.yml
