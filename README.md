@@ -1,6 +1,7 @@
 [<img src="https://github.com/l3r8yJ/jini.github/blob/master/jini.png?raw=true" width="150"/>](https://l3r8yj.github.io/jini.github/)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
+[![Hits-of-Code](https://hitsofcode.com/github/l3r8yJ/jini)](https://hitsofcode.com/github/l3r8yJ/jini/view)
 
 The class [`Jini`](https://www.rubydoc.info/gems/jini/1.3.0/Jini) helps you build an XPATH.
 
