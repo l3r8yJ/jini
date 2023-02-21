@@ -1,4 +1,4 @@
-[<img src="https://raw.githubusercontent.com/l3r8yJ/jini.github/84856ea75deb133a95f0a160549c5d97089dc3ab/default-monochrome-black.svg" width="150"/>](https://l3r8yj.github.io/jini.github/)
+[<img src="https://github.com/l3r8yJ/jini.github/blob/master/jini.png?raw=true" width="150"/>](https://l3r8yj.github.io/jini.github/)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 
