@@ -1,4 +1,4 @@
-[<img src="https://github.com/l3r8yJ/jini.github/blob/master/jini.png?raw=true" width="150"/>](https://l3r8yj.github.io/jini.github/)
+[<img src="https://raw.githubusercontent.com/l3r8yJ/jini.github/db555c356e7db006ad7b33b930dc4f4432add220/new-jini.svg" width="150"/>](https://l3r8yj.github.io/jini.github/)
 
 [![Gem Version](https://badge.fury.io/rb/jini.svg)](https://badge.fury.io/rb/jini)
 [![Hits-of-Code](https://hitsofcode.com/github/l3r8yJ/jini)](https://hitsofcode.com/github/l3r8yJ/jini/view)
