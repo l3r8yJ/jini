@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md', 'LICENSE']
   s.add_development_dependency 'minitest', '5.16.3'
   s.add_development_dependency 'rubocop', '1.31.1'
-  s.add_development_dependency 'rubocop-rspec', '2.11.1'
+  s.add_development_dependency 'rubocop-rspec', '3.10.2'
   s.metadata = { 'rubygems_mfa_required' => 'false' }
 end
